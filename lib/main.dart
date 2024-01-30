@@ -12,6 +12,9 @@ import 'view/screens/home/home_page.dart';
 import 'view/screens/intro/splash_screen.dart';
 import 'view/screens/sign_in/sign_in_page.dart';
 
+//apk link: https://drive.google.com/file/d/1QvTHIbXX2hnqpEYe88e_SdM1G9vdaYuz/view?usp=sharing
+//project git link: https://github.com/mahbub06ru/fl_peanut_assign
+
 class MyHttpOverrides extends HttpOverrides {
   @override
   HttpClient createHttpClient(SecurityContext? context) {
