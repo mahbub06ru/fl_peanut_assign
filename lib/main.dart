@@ -66,7 +66,7 @@ class MyApp extends StatelessWidget {
       initialRoute: '/SplashPage',
       initialBinding: AppBinding(),
       theme: ThemeData(
-        primaryColor: Colors.red,
+        primaryColor: Colors.green,
         // primarySwatch: ColorRes.appColor,
         // canvasColor: Colors.white,
         appBarTheme: const AppBarTheme(

@@ -10,21 +10,21 @@ String accountInfoToJson(AccountInfo data) => json.encode(data.toJson());
 
 class AccountInfo {
   String? address;
-  double? balance;
+  dynamic balance;
   String? city;
   String? country;
   int? currency;
-  int? currentTradesCount;
-  double? currentTradesVolume;
-  double? equity;
-  double? freeMargin;
+  dynamic currentTradesCount;
+  dynamic currentTradesVolume;
+  dynamic equity;
+  dynamic freeMargin;
   bool? isAnyOpenTrades;
   bool? isSwapFree;
   int? leverage;
   String? name;
   String? phone;
-  int? totalTradesCount;
-  double? totalTradesVolume;
+  dynamic totalTradesCount;
+  dynamic totalTradesVolume;
   int? type;
   int? verificationLevel;
   String? zipCode;
@@ -58,16 +58,16 @@ class AccountInfo {
     country: json["country"],
     currency: json["currency"],
     currentTradesCount: json["currentTradesCount"],
-    currentTradesVolume: json["currentTradesVolume"]?.toDouble(),
-    equity: json["equity"]?.toDouble(),
-    freeMargin: json["freeMargin"]?.toDouble(),
+    currentTradesVolume: json["currentTradesVolume"],
+    equity: json["equity"],
+    freeMargin: json["freeMargin"],
     isAnyOpenTrades: json["isAnyOpenTrades"],
     isSwapFree: json["isSwapFree"],
     leverage: json["leverage"],
     name: json["name"],
     phone: json["phone"],
     totalTradesCount: json["totalTradesCount"],
-    totalTradesVolume: json["totalTradesVolume"]?.toDouble(),
+    totalTradesVolume: json["totalTradesVolume"],
     type: json["type"],
     verificationLevel: json["verificationLevel"],
     zipCode: json["zipCode"],

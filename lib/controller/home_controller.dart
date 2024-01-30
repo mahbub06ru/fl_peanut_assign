@@ -14,6 +14,7 @@ import '../model/trader_list.dart';
 import '../network/request.dart';
 import '../network/synchronize_data.dart';
 import '../network/url.dart';
+import '../utils/constants.dart';
 
 class HomeController extends GetxController {
   var accountInfo = AccountInfo().obs;

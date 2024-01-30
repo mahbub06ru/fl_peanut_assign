@@ -1,3 +1,4 @@
+import 'dart:ffi';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -7,7 +8,9 @@ import 'package:peanut/controller/login_controller.dart';
 import 'package:shimmer/shimmer.dart';
 
 import '../../../controller/home_controller.dart';
+import '../../../network/url.dart';
 import '../../../utils/app_colors.dart';
+import '../../../utils/constants.dart';
 import '../../widgets/skeleton_card.dart';
 
 class HomePage extends StatefulWidget {
@@ -80,49 +83,106 @@ class _HomePageState extends State<HomePage> {
                         return Shimmer.fromColors(
                             baseColor: Colors.grey[300]!,
                             highlightColor: Colors.grey[100]!,
-                            child: SkeletonCard());
+                            child: const SkeletonCard());
                       },
                     )
-                  : Card(
-                      child: Column(
-                        //"address": "Мусы Джалиля д.32 кор.1 кв.77",
-                        //     "balance": 314.79,
-                        //     "city": "Калининград",
-                        //     "country": "Belarus",
-                        //     "currency": 0,
-                        //     "currentTradesCount": 4,
-                        //     "currentTradesVolume": 0.04,
-                        //     "equity": 241.56000000000003,
-                        //     "freeMargin": 73.91484000000003,
-                        //     "isAnyOpenTrades": true,
-                        //     "isSwapFree": false,
-                        //     "leverage": 1,
-                        //     "name": "Tester",
-                        //     "phone": "4abb3f0b138407cd3d0f00443abad73d",
-                        //     "totalTradesCount": 1636,
-                        //     "totalTradesVolume": 76.15,
-                        //     "type": 1,
-                        //     "verificationLevel": 1,
-                        //     "zipCode": "ru236022"
-                        children: [
-                          Text(_homeController.accountInfo.value.address
-                              .toString()),
-                          Text(_homeController.accountInfo.value.balance
-                              .toString()),
-                          Text(_homeController.accountInfo.value.city
-                              .toString()),
-                          Text(_homeController.accountInfo.value.country
-                              .toString()),
-                          Text(_homeController.lastFourDigits.value.toString()),
-                        ],
-                      ),
-                    )),
+                  : ListView(
+                   children: [
+                     Column(
+                       //"address": "Мусы Джалиля д.32 кор.1 кв.77",
+                       //     "balance": 314.79,
+                       //     "city": "Калининград",
+                       //     "country": "Belarus",
+                       //     "currency": 0,
+                       //     "currentTradesCount": 4,
+                       //     "currentTradesVolume": 0.04,
+                       //     "equity": 241.56000000000003,
+                       //     "freeMargin": 73.91484000000003,
+                       //     "isAnyOpenTrades": true,
+                       //     "isSwapFree": false,
+                       //     "leverage": 1,
+                       //     "name": "Tester",
+                       //     "phone": "4abb3f0b138407cd3d0f00443abad73d",
+                       //     "totalTradesCount": 1636,
+                       //     "totalTradesVolume": 76.15,
+                       //     "type": 1,
+                       //     "verificationLevel": 1,
+                       //     "zipCode": "ru236022"
+                       children: [
+                         Card(
+                           child: ListTile(
+                             title: Text('Name'),
+                             subtitle: Text(_homeController.accountInfo.value.name.toString()),
+                           ),
+                         ),
+                         Card(
+                           child: ListTile(
+                             title: Text('Address'),
+                             subtitle: Column(
+                               crossAxisAlignment: CrossAxisAlignment.start,
+                               children: [
+                                 Text('${_homeController.accountInfo.value.address}'),
+                                 Text('City: ${_homeController.accountInfo.value.city}'),
+                                 Text('Zip Code: ${_homeController.accountInfo.value.zipCode}'),
+                               ],
+                             ),
+                           ),
+                         ),
+                         Card(
+                           child: ListTile(
+                             title: Text('Balance'),
+                             subtitle: Text(Utils.formatDoubleToTwoDecimalPlaces(_homeController.accountInfo.value.balance!)),
+                           ),
+                         ),
+                         Card(
+                           child: ListTile(
+                             title: Text('Current Trades Count'),
+                             subtitle: Text(Utils.formatDoubleToTwoDecimalPlaces(_homeController.accountInfo.value.currentTradesCount)),
+                           ),
+                         ),
+                         Card(
+                           child: ListTile(
+                             title: Text('Equity'),
+                             subtitle: Text(Utils.formatDoubleToTwoDecimalPlaces(_homeController.accountInfo.value.equity!)),
+                           ),
+                         ),
+                         Card(
+                           child: ListTile(
+                             title: Text('Free Margin'),
+                             subtitle: Text(Utils.formatDoubleToTwoDecimalPlaces(_homeController.accountInfo.value.freeMargin!)),
+                           ),
+                         ),
+                         Card(
+                           child: ListTile(
+                             title: Text('Total Trades Count'),
+                             subtitle: Text(Utils.formatDoubleToTwoDecimalPlaces(_homeController.accountInfo.value.totalTradesCount!)),
+                           ),
+                         ),
+                         Card(
+                           child: ListTile(
+                             title: Text('Total Trades Volume'),
+                             subtitle: Text(Utils.formatDoubleToTwoDecimalPlaces(_homeController.accountInfo.value.totalTradesVolume!)),
+                           ),
+                         ),
+                         Card(
+                           child: ListTile(
+                             title: Text('Last Four Digit of Phone'),
+                             subtitle: Text(_homeController.lastFourDigits.value.toString()),
+                           ),
+                         ),
+
+
+                       ],
+                     )
+                   ],
+                  )),
             ))
           ],
         ),
       ),
     );
   }
+
   Future<bool> showExitPopup(context) async {
     return await showDialog(
         context: context,
@@ -151,16 +211,16 @@ class _HomePageState extends State<HomePage> {
                       const SizedBox(width: 15),
                       Expanded(
                           child: ElevatedButton(
-                            onPressed: () {
-                              //  print('no selected');
-                              Navigator.of(context).pop();
-                            },
-                            child: const Text("No",
-                                style: TextStyle(color: Colors.black)),
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.white,
-                            ),
-                          ))
+                        onPressed: () {
+                          //  print('no selected');
+                          Navigator.of(context).pop();
+                        },
+                        child: const Text("No",
+                            style: TextStyle(color: Colors.black)),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.white,
+                        ),
+                      ))
                     ],
                   )
                 ],
@@ -169,6 +229,7 @@ class _HomePageState extends State<HomePage> {
           );
         });
   }
+
   @override
   void initState() {
     _homeController.getAccountInformation();
@@ -180,29 +241,17 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-    /*  appBar: AppBar(
-        title: Text('Hello, ' + storage.read('userId')),
-        actions: <Widget>[
-          IconButton(
-            icon: const Icon(
-              Icons.logout,
-              color: Colors.white,
-            ),
-            onPressed: () async {
-              _loginController.logOut();
-            },
-          ),
-          IconButton(
-            icon: const Icon(
-              Icons.person_outline,
-              color: Colors.white,
-            ),
-            onPressed: () async {
-              _showProductModalBottomSheet(Get.context!);
-            },
-          ),
-        ],
-      ),*/
+      floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
+      floatingActionButton: FloatingActionButton(
+        child: const Icon(
+          Icons.person_outline,
+          color: Colors.white,
+        ),
+        backgroundColor: Colors.green,
+        onPressed: () {
+          _showProductModalBottomSheet(Get.context!);
+        },
+      ),
       body: PopScope(
         canPop: false,
         onPopInvoked: (bool didPop) {
@@ -212,31 +261,37 @@ class _HomePageState extends State<HomePage> {
           showExitPopup(context);
         },
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
               width: Get.width,
-              height: 140,
-              decoration:  const BoxDecoration(
+              height: 100,
+              decoration: const BoxDecoration(
                 color: AppColors.appColor,
                 borderRadius: BorderRadius.only(
                   bottomLeft: Radius.circular(50),
                   bottomRight: Radius.circular(50),
                 ),
               ),
-              child:  Center(
+              child: Center(
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
+                  // mainAxisAlignment: MainAxisAlignment.center,
+                  // crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    const SizedBox(height: 10,),
-                    Obx(
-                          () => ListTile(
-                        title: Text('Total Profit: ${_homeController.totalProfit}'),
-                      ),
+                    const SizedBox(
+                      height: 30,
                     ),
-                    const SizedBox(height: 5,),
                     Row(
-                      children:[
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Text(
+                          'Hello: ${storage.read('userId')}',
+                          style: const TextStyle(
+                              fontSize: 18,
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold),
+                        ),
                         IconButton(
                           icon: const Icon(
                             Icons.logout,
@@ -246,22 +301,24 @@ class _HomePageState extends State<HomePage> {
                             _loginController.logOut();
                           },
                         ),
-                        IconButton(
-                          icon: const Icon(
-                            Icons.person_outline,
-                            color: Colors.white,
-                          ),
-                          onPressed: () async {
-                            _showProductModalBottomSheet(Get.context!);
-                          },
-                        ),
-                      ]
-                    )
+                      ],
+                    ),
                   ],
                 ),
               ),
             ),
-
+            Obx(
+              () => ListTile(
+                title: Text(
+                  // 'Total Profit: ${_homeController.totalProfit}',
+                  'Total Profit: ${Utils.formatDoubleToTwoDecimalPlaces(_homeController.totalProfit.value)}',
+                  style: const TextStyle(
+                      fontSize: 18,
+                      color: Colors.green,
+                      fontWeight: FontWeight.bold),
+                ),
+              ),
+            ),
             Expanded(
               child: RefreshIndicator(
                 // onRefresh: () => _homeController.getOpenTrades(),
@@ -277,23 +334,38 @@ class _HomePageState extends State<HomePage> {
                             return Shimmer.fromColors(
                                 baseColor: Colors.grey[300]!,
                                 highlightColor: Colors.grey[100]!,
-                                child: SkeletonCard());
+                                child: const SkeletonCard());
                           },
                         )
                       : ListView.builder(
-                          itemCount: _homeController.openTrades.length,
-                          itemBuilder: (context, index) {
-                            final trade = _homeController.openTrades[index];
-                            return Card(
+                        itemCount: _homeController.openTrades.length,
+                        itemBuilder: (context, index) {
+                          final trade = _homeController.openTrades[index];
+                          return Padding(
+                            padding: const EdgeInsets.all(3.0),
+                            child: Card(
                               // Customize card UI as needed
                               child: ListTile(
-                                title: Text('Symbol: ${trade.symbol}'),
-                                subtitle: Text('Profit: ${trade.profit}'),
+                                title: Text('Symbol: ${trade.symbol}',style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                ),),
+                                subtitle: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text('Profit: ${trade.profit}'),
+                                    Text('Current Price: ${trade.currentPrice}'),
+                                    Text('Open Price: ${trade.openPrice}'),
+                                    Text('Swaps: ${trade.swaps}'),
+                                    Text('Symbol: ${trade.symbol}'),
+                                    Text('Open Time: ${Utils.convertOpenTime(trade.openTime.toString())}'),
+                                  ],
+                                ),
                                 // Add other fields as needed
                               ),
-                            );
-                          },
-                        ),
+                            ),
+                          );
+                        },
+                      ),
                 ),
               ),
             ),
