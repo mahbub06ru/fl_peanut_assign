@@ -17,15 +17,15 @@ class SkeletonCard extends StatelessWidget {
       ),
       clipBehavior: Clip.antiAliasWithSaveLayer,
       margin: const EdgeInsets.all(10),
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
+      child: const Padding(
+        padding: EdgeInsets.all(8.0),
         child: Column(
           children: [
-            const SizedBox(height: 10),
-            const Skeleton(width:double.infinity,height: 55,),
-            const SizedBox(height: 10),
-            const Skeleton(width:double.infinity,height: 55,),
-            const SizedBox(height: 10),
+            SizedBox(height: 10),
+            Skeleton(width:double.infinity,height: 55,),
+            SizedBox(height: 10),
+            Skeleton(width:double.infinity,height: 55,),
+            SizedBox(height: 10),
 
           ],
         ),

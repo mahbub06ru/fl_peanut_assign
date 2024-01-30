@@ -89,35 +89,17 @@ class _HomePageState extends State<HomePage> {
                   : ListView(
                    children: [
                      Column(
-                       //"address": "Мусы Джалиля д.32 кор.1 кв.77",
-                       //     "balance": 314.79,
-                       //     "city": "Калининград",
-                       //     "country": "Belarus",
-                       //     "currency": 0,
-                       //     "currentTradesCount": 4,
-                       //     "currentTradesVolume": 0.04,
-                       //     "equity": 241.56000000000003,
-                       //     "freeMargin": 73.91484000000003,
-                       //     "isAnyOpenTrades": true,
-                       //     "isSwapFree": false,
-                       //     "leverage": 1,
-                       //     "name": "Tester",
-                       //     "phone": "4abb3f0b138407cd3d0f00443abad73d",
-                       //     "totalTradesCount": 1636,
-                       //     "totalTradesVolume": 76.15,
-                       //     "type": 1,
-                       //     "verificationLevel": 1,
-                       //     "zipCode": "ru236022"
+
                        children: [
                          Card(
                            child: ListTile(
-                             title: Text('Name'),
+                             title: const Text('Name'),
                              subtitle: Text(_homeController.accountInfo.value.name.toString()),
                            ),
                          ),
                          Card(
                            child: ListTile(
-                             title: Text('Address'),
+                             title: const Text('Address'),
                              subtitle: Column(
                                crossAxisAlignment: CrossAxisAlignment.start,
                                children: [
@@ -130,43 +112,43 @@ class _HomePageState extends State<HomePage> {
                          ),
                          Card(
                            child: ListTile(
-                             title: Text('Balance'),
+                             title: const Text('Balance'),
                              subtitle: Text(Utils.formatDoubleToTwoDecimalPlaces(_homeController.accountInfo.value.balance!)),
                            ),
                          ),
                          Card(
                            child: ListTile(
-                             title: Text('Current Trades Count'),
+                             title: const Text('Current Trades Count'),
                              subtitle: Text(Utils.formatDoubleToTwoDecimalPlaces(_homeController.accountInfo.value.currentTradesCount)),
                            ),
                          ),
                          Card(
                            child: ListTile(
-                             title: Text('Equity'),
+                             title: const Text('Equity'),
                              subtitle: Text(Utils.formatDoubleToTwoDecimalPlaces(_homeController.accountInfo.value.equity!)),
                            ),
                          ),
                          Card(
                            child: ListTile(
-                             title: Text('Free Margin'),
+                             title: const Text('Free Margin'),
                              subtitle: Text(Utils.formatDoubleToTwoDecimalPlaces(_homeController.accountInfo.value.freeMargin!)),
                            ),
                          ),
                          Card(
                            child: ListTile(
-                             title: Text('Total Trades Count'),
+                             title: const Text('Total Trades Count'),
                              subtitle: Text(Utils.formatDoubleToTwoDecimalPlaces(_homeController.accountInfo.value.totalTradesCount!)),
                            ),
                          ),
                          Card(
                            child: ListTile(
-                             title: Text('Total Trades Volume'),
+                             title: const Text('Total Trades Volume'),
                              subtitle: Text(Utils.formatDoubleToTwoDecimalPlaces(_homeController.accountInfo.value.totalTradesVolume!)),
                            ),
                          ),
                          Card(
                            child: ListTile(
-                             title: Text('Last Four Digit of Phone'),
+                             title: const Text('Last Four Digit of Phone'),
                              subtitle: Text(_homeController.lastFourDigits.value.toString()),
                            ),
                          ),
@@ -346,7 +328,7 @@ class _HomePageState extends State<HomePage> {
                             child: Card(
                               // Customize card UI as needed
                               child: ListTile(
-                                title: Text('Symbol: ${trade.symbol}',style: TextStyle(
+                                title: Text('Symbol: ${trade.symbol}',style: const TextStyle(
                                   fontWeight: FontWeight.bold,
                                 ),),
                                 subtitle: Column(
