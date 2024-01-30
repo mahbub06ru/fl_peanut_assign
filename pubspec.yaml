@@ -43,6 +43,7 @@ dependencies:
   internet_connection_checker: ^1.0.0+1
   intl: ^0.19.0
   shimmer: ^3.0.0
+  connectivity_plus: ^5.0.2
 
 dev_dependencies:
   flutter_test:
@@ -59,6 +60,12 @@ dev_dependencies:
 # following page: https://dart.dev/tools/pub/pubspec
 
 # The following section is specific to Flutter packages.
+
+flutter_icons:
+  image_path: "assets/images/icon.png"
+  android: true
+  ios: true
+
 flutter:
 
   # The following line ensures that the Material Icons font is

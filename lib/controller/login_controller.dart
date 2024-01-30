@@ -11,7 +11,8 @@ import 'package:peanut/view/screens/sign_in/sign_in_page.dart';
 
 import '../network/request.dart';
 import '../network/url.dart';
-import '../view/screens/profile/home_page.dart';
+import '../view/screens/home/home_page.dart';
+
 
 class LoginController extends GetxController {
   late TextEditingController useridTextController;
@@ -24,6 +25,15 @@ class LoginController extends GetxController {
       status: 'loading...',
       maskType: EasyLoadingMaskType.custom,
     );
+  }
+
+  bool isTokenExpired() {
+    final String? tokenExpiration = storage.read('tokenExpiration');
+    if (tokenExpiration != null) {
+      final DateTime expirationDate = DateTime.parse(tokenExpiration);
+      return DateTime.now().isAfter(expirationDate);
+    }
+    return true;
   }
 
   @override
@@ -62,6 +72,11 @@ class LoginController extends GetxController {
       print(responseJson['token']);
       storage.write('token', responseJson['token']);
       storage.write('userId', useridTextController.text.trim());
+
+      // Set token expiration logic (assuming token has an expiration field)
+      // final DateTime expirationDate = DateTime.now().add(Duration(days: 1)); // Adjust as needed
+      // storage.write('tokenExpiration', expirationDate.toString());
+
 
       EasyLoading.dismiss();
       Get.to(()=>HomePage());

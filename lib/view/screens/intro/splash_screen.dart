@@ -12,10 +12,10 @@ import 'package:get/get.dart';
 import 'dart:async';
 import 'dart:developer' as developer;
 import 'package:get_storage/get_storage.dart';
-import 'package:peanut/view/screens/profile/home_page.dart';
 
 import '../../../controller/login_controller.dart';
 import '../../widgets/custom_alert_dialog.dart';
+import '../home/home_page.dart';
 import '../sign_in/sign_in_page.dart';
 
 class SplashPage extends StatefulWidget {

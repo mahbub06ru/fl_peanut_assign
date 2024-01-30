@@ -98,128 +98,135 @@ class _SignInPageState extends State<SignInPage> {
       child: SafeArea(
           child: Scaffold(
             backgroundColor: Colors.white,
-            body: Center(
-              child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Form(
-                      key: _formKey,
-                      autovalidateMode: AutovalidateMode.onUserInteraction,
-                      child: ListView(
-                        shrinkWrap: true,
-                        children: [
-                          Container(
-                            decoration: BoxDecoration(
-                              color: Colors.grey[200],
-                              borderRadius: BorderRadius.circular(10.0),
-                            ),
-                            child: TextFormField(
-                              focusNode: _focusNode,
-                              textCapitalization:
-                              TextCapitalization.characters,
-                              controller:
-                              _loginController.useridTextController,
-                              style: const TextStyle(
-                                color: Colors.black,
-                                fontFamily: 'OpenSans',
-                                fontSize: 18,
+            body: Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Center(
+                child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      const Text(Constants.login,style: TextStyle(
+                        fontSize: 25,
+                      ),),
+                      const SizedBox(height: 50),
+                      Form(
+                        key: _formKey,
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
+                        child: ListView(
+                          shrinkWrap: true,
+                          children: [
+                            Container(
+                              decoration: BoxDecoration(
+                                color: Colors.grey[200],
+                                borderRadius: BorderRadius.circular(10.0),
                               ),
-                              decoration: const InputDecoration(
-                                border: InputBorder.none,
-                                prefixIcon: Icon(
-                                  Icons.person,
-                                  color: Colors.grey,
-                                ),
-                                hintText: 'ENTER YOUR ID',
-                                hintStyle: TextStyle(
-                                  color: Colors.black54,
-                                  fontFamily: 'OpenSans',
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                                contentPadding: EdgeInsets.symmetric(
-                                    vertical: 15.0, horizontal: 20.0),
-                              ),
-                              validator: (value) =>
-                              value!.trim().isEmpty
-                                  ? 'ID required'
-                                  : null,
-                              inputFormatters: <TextInputFormatter>[
-                                FilteringTextInputFormatter.deny(
-                                    RegExp(r"\s\b|\b\s"))
-                              ],
-                            ),
-                          ),
-                          const SizedBox(height: 10),
-                          Container(
-                            decoration: BoxDecoration(
-                              color: Colors.grey[200],
-                              borderRadius: BorderRadius.circular(10.0),
-                            ),
-                            child: TextFormField(
-                              controller:
-                              _loginController.passTextController,
-                              obscureText: true,
-                              style: const TextStyle(
-                                color: Colors.black,
-                                fontFamily: 'OpenSans',
-                                fontSize: 18,
-                              ),
-                              decoration: const InputDecoration(
-                                border: InputBorder.none,
-                                prefixIcon: Icon(
-                                  Icons.lock,
-                                  color: Colors.grey,
-                                ),
-                                hintText: 'ENTER YOUR PASSWORD',
-                                hintStyle: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black54,
+                              child: TextFormField(
+                                focusNode: _focusNode,
+                                textCapitalization:
+                                TextCapitalization.characters,
+                                controller:
+                                _loginController.useridTextController,
+                                style: const TextStyle(
+                                  color: Colors.black,
                                   fontFamily: 'OpenSans',
                                   fontSize: 18,
                                 ),
-                                contentPadding: EdgeInsets.symmetric(
-                                    vertical: 15.0, horizontal: 20.0),
+                                decoration: const InputDecoration(
+                                  border: InputBorder.none,
+                                  prefixIcon: Icon(
+                                    Icons.person,
+                                    color: Colors.grey,
+                                  ),
+                                  hintText: 'ENTER YOUR ID',
+                                  hintStyle: TextStyle(
+                                    color: Colors.black54,
+                                    fontFamily: 'OpenSans',
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                  contentPadding: EdgeInsets.symmetric(
+                                      vertical: 15.0, horizontal: 20.0),
+                                ),
+                                validator: (value) =>
+                                value!.trim().isEmpty
+                                    ? 'ID required'
+                                    : null,
+                                inputFormatters: <TextInputFormatter>[
+                                  FilteringTextInputFormatter.deny(
+                                      RegExp(r"\s\b|\b\s"))
+                                ],
                               ),
-                              validator: (value) =>
-                              value!.trim().isEmpty
-                                  ? 'Password required'
-                                  : null,
                             ),
-                          ),
+                            const SizedBox(height: 10),
+                            Container(
+                              decoration: BoxDecoration(
+                                color: Colors.grey[200],
+                                borderRadius: BorderRadius.circular(10.0),
+                              ),
+                              child: TextFormField(
+                                controller:
+                                _loginController.passTextController,
+                                obscureText: true,
+                                style: const TextStyle(
+                                  color: Colors.black,
+                                  fontFamily: 'OpenSans',
+                                  fontSize: 18,
+                                ),
+                                decoration: const InputDecoration(
+                                  border: InputBorder.none,
+                                  prefixIcon: Icon(
+                                    Icons.lock,
+                                    color: Colors.grey,
+                                  ),
+                                  hintText: 'ENTER YOUR PASSWORD',
+                                  hintStyle: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black54,
+                                    fontFamily: 'OpenSans',
+                                    fontSize: 18,
+                                  ),
+                                  contentPadding: EdgeInsets.symmetric(
+                                      vertical: 15.0, horizontal: 20.0),
+                                ),
+                                validator: (value) =>
+                                value!.trim().isEmpty
+                                    ? 'Password required'
+                                    : null,
+                              ),
+                            ),
 
-                        ],
+                          ],
+                        ),
                       ),
-                    ),
-                    const SizedBox(height: 20),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 20.0),
-                      child: SizedBox(
-                        width: Get.width,
-                        child: MaterialButton(
-                            color:  AppColors.buttonColor,
-                            height: 45,
-                            shape: RoundedRectangleBorder(
-                              borderRadius:
-                              BorderRadius.circular(10),
-                            ),
-                            child: const Text(
-                              'LOGIN',
-                              style: TextStyle(color: Colors.white),
-                            ),
-                            onPressed: () {
-                              if (_formKey.currentState!
-                                  .validate()) {
-                                // _loginController.apiLogin();
-                                _loginController.login();
+                      const SizedBox(height: 20),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 20.0),
+                        child: SizedBox(
+                          width: Get.width,
+                          child: MaterialButton(
+                              color:  AppColors.buttonColor,
+                              height: 45,
+                              shape: RoundedRectangleBorder(
+                                borderRadius:
+                                BorderRadius.circular(10),
+                              ),
+                              child: const Text(
+                                'LOGIN',
+                                style: TextStyle(color: Colors.white),
+                              ),
+                              onPressed: () {
+                                if (_formKey.currentState!
+                                    .validate()) {
+                                  // _loginController.apiLogin();
+                                  _loginController.login();
 
-                              }
-                            }),
-                      ),
-                    )
-                  ]
+                                }
+                              }),
+                        ),
+                      )
+                    ]
+                ),
               ),
             ),
           )),

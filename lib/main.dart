@@ -8,8 +8,8 @@ import 'package:peanut/utils/app_binding.dart';
 import 'package:peanut/utils/colors.dart';
 
 import 'animation/custom_animation.dart';
+import 'view/screens/home/home_page.dart';
 import 'view/screens/intro/splash_screen.dart';
-import 'view/screens/profile/home_page.dart';
 import 'view/screens/sign_in/sign_in_page.dart';
 
 class MyHttpOverrides extends HttpOverrides {
@@ -66,9 +66,9 @@ class MyApp extends StatelessWidget {
       initialRoute: '/SplashPage',
       initialBinding: AppBinding(),
       theme: ThemeData(
-        primaryColor: ColorRes.appColor,
-        primarySwatch: ColorRes.appColor,
-        canvasColor: Colors.white,
+        primaryColor: Colors.red,
+        // primarySwatch: ColorRes.appColor,
+        // canvasColor: Colors.white,
         appBarTheme: const AppBarTheme(
           color: ColorRes.appColor,
         ),
